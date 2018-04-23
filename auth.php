@@ -157,7 +157,7 @@ class auth_plugin_mcae extends auth_plugin_manual {
 
         $replacements = array();
         if (!empty($replacementstemplate)) {
-            $replacementsarray = explode($delim, $replacementstemplate);
+            $replacementsarray = preg_split('/\r\n|\r|\n/', $replacementstemplate);
             foreach ($replacementsarray as $replacement) {
                 list($key, $val) = explode("|", $replacement);
                 $replacements[$key] = $val;
@@ -170,7 +170,7 @@ class auth_plugin_mcae extends auth_plugin_manual {
         $mainrulearray = array();
         $templates = array();
         if (!empty($mainrule)) {
-            $mainrulearray = explode($delim, $mainrule);
+            $mainrulearray = preg_split('/\r\n|\r|\n/', $mainrule);
         } else {
             $SESSION->mcautoenrolled = true;
             return; // Empty mainrule.
